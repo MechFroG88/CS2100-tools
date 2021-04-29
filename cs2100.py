@@ -85,7 +85,7 @@ def minterm():
         matrix.append(row)
 
     printMatrix(matrix, 1)
-    printKmap(matrix, n, alpha[:n])
+    printKmap(matrix, n + 1, alpha[:n])
 
 def maxterm():
     # input number of bits
@@ -115,7 +115,7 @@ def maxterm():
         matrix.append(row)
 
     printMatrix(matrix, 1)
-    printKmap(matrix, n, alpha[:n])
+    printKmap(matrix, n + 1, alpha[:n])
 
 def flip():
     # input number of bits
@@ -128,7 +128,7 @@ def flip():
     inputAlpha = []
 
     if (inputs != 0):
-        inputAlpha = list(input("Alphabet for input(s) : "))
+        inputAlpha = list(input("Variable for input : "))
 
     # input flip-flop type
     # eg : D T JK SR
@@ -168,7 +168,7 @@ def flip():
         for j in range(n):
             flipflop = types[j]
             if (flipflop == 'D'):
-                row.append(str(result[index]))
+                row.append("1" if result[index] else "0")
                 index += 1
             if (flipflop == 'T'):
                 if (result[index]):
@@ -242,7 +242,7 @@ def state():
 
     # A B C Y Z A+ B+ C+
     var = alpha[:n] + alpha[26-(inputs):]
-    firstRow = list(map(lambda x : x + "+", alpha[:n]))
+    firstRow = var + list(map(lambda x : x + "+", alpha[:n]))
 
     # JA KA DB DC
     for i in range(n):
